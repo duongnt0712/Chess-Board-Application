@@ -2,7 +2,7 @@
 
 Place a set of chess pieces on the board and calculate each piece's available movements.
 
-<img src="./images/ChessBoard.jpg" alt="The Chess Board" width="600"/>
+<img src="docs/images/ChessBoard.jpg" alt="The Chess Board" width="600"/>
 
 ## Prerequisite
 OOP and SOLID Principle. 
@@ -32,7 +32,7 @@ Base on Position of Pieces, calculate available movement of each one and collect
 
 Generate the Result Set of movenent to the output, may be Console, Text, Json, XML...
 
-<img src="./images/ChessBoard.drawio.png" alt="Requirement" width="600"/>
+<img src="docs/images/ChessBoard.drawio.png" alt="Requirement" width="600"/>
 
 ## Code Quality Requirement
 
