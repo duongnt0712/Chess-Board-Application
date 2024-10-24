@@ -1,4 +1,4 @@
-package gradle.demo.enums;
+package com.demo.chessboard.enums;
 
 /**
  * Represents the different types of chess pieces.

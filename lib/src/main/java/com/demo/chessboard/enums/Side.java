@@ -1,4 +1,4 @@
-package gradle.demo.enums;
+package com.demo.chessboard.enums;
 
 public enum Side {
     BLACK,
