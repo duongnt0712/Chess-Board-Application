@@ -11,7 +11,7 @@ plugins {
     `java-library`
     id("java")
     id("io.freefair.lombok") version "8.10.2"
-    id("org.sonarqube") version "4.0.0.2929"
+    id("org.sonarqube") version "5.1.0.4882"
 }
 
 group = "com.demo"
@@ -55,9 +55,9 @@ java {
 
 sonar {
     properties {
-        property("sonar.projectKey", "com.demo.chessboard")
+        property("sonar.projectKey", "chess-board")
         property("sonar.projectName", "Chess Board Application")
         property("sonar.host.url", "http://localhost:9000")
-        property("sonar.login", "AXa8K8O8PQH2Rt2gh1yG")
+        property("sonar.token", System.getenv("SONAR_TOKEN") ?: "")
     }
 }
