@@ -5,9 +5,7 @@ import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.enums.PieceType;
 import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.service.ChessBoard;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;

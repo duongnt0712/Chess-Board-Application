@@ -4,15 +4,12 @@
 package com.demo.chessboard;
 
 import com.demo.chessboard.entity.base.Position;
-import com.demo.chessboard.entity.base.Piece;
-import com.demo.chessboard.enums.PieceType;
 import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.PieceMovementService;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
