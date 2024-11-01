@@ -9,6 +9,7 @@ import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.PieceMovementService;
+import com.demo.chessboard.service.impl.MovementServiceImpl;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -27,10 +28,11 @@ public class Library {
         AbstractPieceFactory blackFactory = new PieceFactory(Side.BLACK);
 
         PieceMovementService.parseInput(input, board, whiteFactory, blackFactory);
+        MovementServiceImpl movementService = new MovementServiceImpl();
 
         System.out.println("\n==========RESULT==========");
         board.getAllPieces().forEach(piece -> {
-            Set<Position> moves = piece.calculateAvailableMoves(board);
+            Set<Position> moves = movementService.calculateAvailableMoves(board, piece);
             System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves);
         });
 
