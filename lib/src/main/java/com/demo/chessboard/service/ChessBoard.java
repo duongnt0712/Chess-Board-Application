@@ -2,8 +2,7 @@ package com.demo.chessboard.service;
 
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
-import com.demo.chessboard.enums.Side;
-import com.demo.chessboard.exceptions.PositionNotAvailableException;
+import com.demo.chessboard.exceptions.InvalidPositionException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,7 @@ public class ChessBoard {
 
     public void addPiece(Piece piece) {
         if (board.containsKey(piece.getPosition())) {
-            throw new PositionNotAvailableException(piece.getPosition());
+            throw new InvalidPositionException(piece.getPosition());
         }
         board.put(piece.getPosition(), piece);
     }

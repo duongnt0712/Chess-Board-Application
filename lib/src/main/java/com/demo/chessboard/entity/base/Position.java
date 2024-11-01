@@ -1,8 +1,12 @@
 package com.demo.chessboard.entity.base;
 
+import lombok.Builder;
 
-public record Position(int x, int y) {
-    public boolean isValid() {
-        return x >= 1 && x <= 8 && y >= 1 && y <= 8;
+@Builder
+public record Position(char column, int row) {
+
+    @Override
+    public String toString() {
+        return String.format("%s%d", column, row);
     }
 }

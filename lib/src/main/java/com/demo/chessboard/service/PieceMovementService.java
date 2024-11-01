@@ -33,7 +33,7 @@ public class PieceMovementService {
         }
     }
 
-    private static Piece createPieceFromEntry(String entry, AbstractPieceFactory factory) {
+    public static Piece createPieceFromEntry(String entry, AbstractPieceFactory factory) {
         Pattern pattern = Pattern.compile("([A-Z])([A-H][1-8])");
         Matcher matcher = pattern.matcher(entry);
 
@@ -57,11 +57,9 @@ public class PieceMovementService {
         throw new InvalidInputFormatException(entry);
     }
 
-    private static Position parsePosition(String positionCode) {
+    public static Position parsePosition(String positionCode) {
         char column = positionCode.charAt(0);
         int row = Character.getNumericValue(positionCode.charAt(1));
-        int x = column - 'A' + 1;
-        int y = row;
-        return new Position(x, y);
+        return new Position(column, row);
     }
 }
