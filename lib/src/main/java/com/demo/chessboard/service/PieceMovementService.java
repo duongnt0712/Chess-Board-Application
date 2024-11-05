@@ -1,11 +1,18 @@
 package com.demo.chessboard.service;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.entity.base.Piece;
+import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.PieceType;
+import com.demo.chessboard.enums.Rank;
+import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.exceptions.InvalidInputFormatException;
 import com.demo.chessboard.exceptions.InvalidPieceCodeException;
 import com.demo.chessboard.factory.AbstractPieceFactory;
+import com.demo.chessboard.factory.PieceFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,15 +21,16 @@ import java.util.regex.Pattern;
  */
 public class PieceMovementService {
 
-    public static void parseInput(String input, ChessBoard board, AbstractPieceFactory whiteFactory, AbstractPieceFactory blackFactory) {
-        String[] sides = input.split("W:|B:");
+    public static ChessBoard parseInput(String input) {
+        ChessBoard board = new ChessBoard();
+        String[] lines = input.split("W:|B:");
 
-        for (String side : sides) {
-            if (side.trim().isEmpty()) continue;
+        for (String line : lines) {
+            if (line.trim().isEmpty()) continue;
 
-            AbstractPieceFactory factory = side.contains("W:") ? whiteFactory : blackFactory;
-            String[] pieceEntries = side.split(",");
-
+            Side side = line.startsWith("W") ? Side.WHITE : Side.BLACK;
+            AbstractPieceFactory factory = new PieceFactory(side);
+            String[] pieceEntries = line.split(",");
             for (String entry : pieceEntries) {
                 entry = entry.trim();
                 if (!entry.isEmpty()) {
@@ -31,6 +39,7 @@ public class PieceMovementService {
                 }
             }
         }
+        return board;
     }
 
     public static Piece createPieceFromEntry(String entry, AbstractPieceFactory factory) {
@@ -58,8 +67,8 @@ public class PieceMovementService {
     }
 
     public static Position parsePosition(String positionCode) {
-        char column = positionCode.charAt(0);
-        int row = Character.getNumericValue(positionCode.charAt(1));
-        return new Position(column, row);
+        File file = File.valueOf(String.valueOf(positionCode.charAt(0)));
+        Rank rank = Rank.valueOf(String.valueOf(positionCode.charAt(1)));
+        return new Position(file, rank);
     }
 }

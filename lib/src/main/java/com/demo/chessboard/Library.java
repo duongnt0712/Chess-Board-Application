@@ -3,14 +3,17 @@
  */
 package com.demo.chessboard;
 
+import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
-import com.demo.chessboard.enums.Side;
-import com.demo.chessboard.factory.AbstractPieceFactory;
-import com.demo.chessboard.factory.PieceFactory;
+import com.demo.chessboard.enums.PieceType;
 import com.demo.chessboard.service.ChessBoard;
+import com.demo.chessboard.service.MovementService;
+import com.demo.chessboard.service.PieceMovementRegistry;
 import com.demo.chessboard.service.PieceMovementService;
-import com.demo.chessboard.service.impl.MovementServiceImpl;
+import com.demo.chessboard.service.impl.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -23,18 +26,27 @@ public class Library {
         System.out.println("Enter the pieces (e.g., 'W: KE2, QD1, RA1, ...'): ");
         String input = scanner.nextLine();
 
-        ChessBoard board = new ChessBoard();
-        AbstractPieceFactory whiteFactory = new PieceFactory(Side.WHITE);
-        AbstractPieceFactory blackFactory = new PieceFactory(Side.BLACK);
+        ChessBoard board = PieceMovementService.parseInput(input);
 
-        PieceMovementService.parseInput(input, board, whiteFactory, blackFactory);
-        MovementServiceImpl movementService = new MovementServiceImpl();
+        PieceMovementRegistry registry = PieceMovementRegistry.getInstance();
+        registry.register(PieceType.BISHOP, new BishopMovement());
+        registry.register(PieceType.KING, new KingMovement());
+        registry.register(PieceType.KNIGHT, new KnightMovement());
+        registry.register(PieceType.PAWN, new PawnMovement());
+        registry.register(PieceType.QUEEN, new QueenMovement());
+        registry.register(PieceType.ROOK, new RookMovement());
 
         System.out.println("\n==========RESULT==========");
+        Map<Piece, Set<Position>> resultSet = new HashMap<>();
+
         board.getAllPieces().forEach(piece -> {
-            Set<Position> moves = movementService.calculateAvailableMoves(board, piece);
+            MovementService calculator = registry.getCalculator(piece.getType());
+            Set<Position> moves = calculator.calculateAvailableMoves(board, piece);
+            resultSet.put(piece, moves);
             System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves);
         });
+
+        resultSet.forEach((piece, moves) -> System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves));
 
     }
 }
