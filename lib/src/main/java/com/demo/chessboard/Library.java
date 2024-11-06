@@ -43,7 +43,6 @@ public class Library {
             MovementService calculator = registry.getCalculator(piece.getType());
             Set<Position> moves = calculator.calculateAvailableMoves(board, piece);
             resultSet.put(piece, moves);
-            System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves);
         });
 
         resultSet.forEach((piece, moves) -> System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves));

@@ -1,5 +1,7 @@
 package com.demo.chessboard.enums;
 
+import com.demo.chessboard.exceptions.InvalidFileException;
+
 public enum File {
     A(1),
     B(2),
@@ -18,5 +20,19 @@ public enum File {
 
     public int getValue() {
         return value;
+    }
+
+    public static File toFile(char value) {
+        switch (Character.toUpperCase(value)) {
+            case 'A': return A;
+            case 'B': return B;
+            case 'C': return C;
+            case 'D': return D;
+            case 'E': return E;
+            case 'F': return F;
+            case 'G': return G;
+            case 'H': return H;
+            default: throw new InvalidFileException(value);
+        }
     }
 }

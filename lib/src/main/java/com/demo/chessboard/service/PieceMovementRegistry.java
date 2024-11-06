@@ -1,10 +1,8 @@
 package com.demo.chessboard.service;
 
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.service.impl.PawnMovement;
 import lombok.Getter;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

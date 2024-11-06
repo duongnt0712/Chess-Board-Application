@@ -10,9 +10,6 @@ import com.demo.chessboard.exceptions.InvalidPieceCodeException;
 import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +18,13 @@ import java.util.regex.Pattern;
  */
 public class PieceMovementService {
 
+    private PieceMovementService() {
+    }
+
+    public static PieceMovementService createPieceMovementService() {
+        return new PieceMovementService();
+    }
+
     public static ChessBoard parseInput(String input) {
         ChessBoard board = new ChessBoard();
         String[] lines = input.split("W:|B:");
@@ -28,7 +32,7 @@ public class PieceMovementService {
         for (String line : lines) {
             if (line.trim().isEmpty()) continue;
 
-            Side side = line.startsWith("W") ? Side.WHITE : Side.BLACK;
+            Side side = line.toUpperCase().startsWith("W") ? Side.WHITE : Side.BLACK;
             AbstractPieceFactory factory = new PieceFactory(side);
             String[] pieceEntries = line.split(",");
             for (String entry : pieceEntries) {
@@ -43,14 +47,14 @@ public class PieceMovementService {
     }
 
     public static Piece createPieceFromEntry(String entry, AbstractPieceFactory factory) {
-        Pattern pattern = Pattern.compile("([A-Z])([A-H][1-8])");
+        Pattern pattern = Pattern.compile("([A-Za-z])([A-Ha-h][1-8])");
         Matcher matcher = pattern.matcher(entry);
 
         if (matcher.matches()) {
             String pieceCode = matcher.group(1);
             String positionCode = matcher.group(2);
 
-            PieceType pieceType = switch (pieceCode) {
+            PieceType pieceType = switch (pieceCode.toUpperCase()) {
                 case "K" -> PieceType.KING;
                 case "Q" -> PieceType.QUEEN;
                 case "R" -> PieceType.ROOK;
@@ -67,8 +71,8 @@ public class PieceMovementService {
     }
 
     public static Position parsePosition(String positionCode) {
-        File file = File.valueOf(String.valueOf(positionCode.charAt(0)));
-        Rank rank = Rank.valueOf(String.valueOf(positionCode.charAt(1)));
+        File file = File.valueOf(String.valueOf(positionCode.charAt(0)).toUpperCase());
+        Rank rank = Rank.valueOf("R" + positionCode.charAt(1));
         return new Position(file, rank);
     }
 }

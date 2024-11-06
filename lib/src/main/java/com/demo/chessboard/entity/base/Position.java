@@ -9,6 +9,6 @@ public record Position(File file, Rank rank) {
 
     @Override
     public String toString() {
-        return file.name() + rank.name();
+        return file.name() + rank.name().substring(1);
     }
 }
