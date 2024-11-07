@@ -22,6 +22,11 @@ public enum Rank {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
     public static Rank toRank(int value) {
         switch (value) {
             case 1: return R1;

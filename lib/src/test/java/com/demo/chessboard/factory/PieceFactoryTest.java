@@ -2,9 +2,11 @@ package com.demo.chessboard.factory;
 
 import com.demo.chessboard.entity.*;
 import com.demo.chessboard.entity.base.Piece;
+import com.demo.chessboard.entity.base.Position;
+import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.PieceType;
+import com.demo.chessboard.enums.Rank;
 import com.demo.chessboard.enums.Side;
-import com.demo.chessboard.service.PieceMovementService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +16,8 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreateBishopWithTypeAndSide() {
-        Piece bishop = new PieceFactory(Side.BLACK).createPiece(PieceType.BISHOP, PieceMovementService.parsePosition("E3"));
+        Position position = Position.builder().file(File.E).rank(Rank.R3).build();
+        Piece bishop = new PieceFactory(Side.BLACK).createPiece(PieceType.BISHOP, position);
         assertTrue(bishop instanceof Bishop);
         assertEquals(PieceType.BISHOP, bishop.getType());
         assertEquals(Side.BLACK, bishop.getSide());
@@ -23,7 +26,8 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreateKingWithTypeAndSide() {
-        Piece king = new PieceFactory(Side.BLACK).createPiece(PieceType.KING, PieceMovementService.parsePosition("D8"));
+        Position position = Position.builder().file(File.D).rank(Rank.R8).build();
+        Piece king = new PieceFactory(Side.BLACK).createPiece(PieceType.KING, position);
         assertTrue(king instanceof King);
         assertEquals(PieceType.KING, king.getType());
         assertEquals(Side.BLACK, king.getSide());
@@ -32,7 +36,8 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreateKnightWithTypeAndSide() {
-        Piece knight = new PieceFactory(Side.BLACK).createPiece(PieceType.KNIGHT, PieceMovementService.parsePosition("F6"));
+        Position position = Position.builder().file(File.F).rank(Rank.R6).build();
+        Piece knight = new PieceFactory(Side.BLACK).createPiece(PieceType.KNIGHT, position);
         assertTrue(knight instanceof Knight);
         assertEquals(PieceType.KNIGHT, knight.getType());
         assertEquals(Side.BLACK, knight.getSide());
@@ -41,7 +46,8 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreatePawnWithTypeAndSide() {
-        Piece pawn = new PieceFactory(Side.WHITE).createPiece(PieceType.PAWN, PieceMovementService.parsePosition("H2"));
+        Position position = Position.builder().file(File.H).rank(Rank.R2).build();
+        Piece pawn = new PieceFactory(Side.WHITE).createPiece(PieceType.PAWN, position);
         assertTrue(pawn instanceof Pawn);
         assertEquals(PieceType.PAWN, pawn.getType());
         assertEquals(Side.WHITE, pawn.getSide());
@@ -50,7 +56,9 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreateQueenWithTypeAndSide() {
-        Piece queen = new PieceFactory(Side.WHITE).createPiece(PieceType.QUEEN, PieceMovementService.parsePosition("H2"));
+        Position position = Position.builder().file(File.H).rank(Rank.R2).build();
+        Piece queen = new PieceFactory(Side.WHITE).createPiece(PieceType.QUEEN, position);
+
         assertTrue(queen instanceof Queen);
         assertEquals(PieceType.QUEEN, queen.getType());
         assertEquals(Side.WHITE, queen.getSide());
@@ -59,7 +67,8 @@ class PieceFactoryTest {
 
     @Test
     void shouldCreateRookWithTypeAndSide() {
-        Piece rook = new PieceFactory(Side.WHITE).createPiece(PieceType.ROOK, PieceMovementService.parsePosition("A2"));
+        Position position = Position.builder().file(File.A).rank(Rank.R2).build();
+        Piece rook = new PieceFactory(Side.WHITE).createPiece(PieceType.ROOK, position);
         assertTrue(rook instanceof Rook);
         assertEquals(PieceType.ROOK, rook.getType());
         assertEquals(Side.WHITE, rook.getSide());

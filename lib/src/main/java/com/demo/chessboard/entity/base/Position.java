@@ -4,11 +4,11 @@ import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.Rank;
 import lombok.Builder;
 
-@Builder
+@Builder(toBuilder = true)
 public record Position(File file, Rank rank) {
 
     @Override
     public String toString() {
-        return file.name() + rank.name().substring(1);
+        return file.toString() + rank.toString();
     }
 }

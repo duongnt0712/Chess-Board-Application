@@ -3,8 +3,8 @@ package com.demo.chessboard.service;
 import com.demo.chessboard.enums.PieceType;
 import lombok.Getter;
 
+import java.util.EnumMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class PieceMovementRegistry {
 
@@ -14,14 +14,14 @@ public class PieceMovementRegistry {
     private final Map<PieceType, MovementService> movementMap;
 
     private PieceMovementRegistry() {
-        movementMap = new ConcurrentHashMap<>();
+        movementMap = new EnumMap<>(PieceType.class);
     }
 
-    public void register(PieceType type, MovementService calculator) {
-        movementMap.put(type, calculator);
+    public synchronized void register(PieceType type, MovementService service) {
+        movementMap.put(type, service);
     }
 
-    public MovementService getCalculator(PieceType type) {
+    public MovementService get(PieceType type) {
         return movementMap.get(type);
     }
 }

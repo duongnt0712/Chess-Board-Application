@@ -40,7 +40,7 @@ public class Library {
         Map<Piece, Set<Position>> resultSet = new HashMap<>();
 
         board.getAllPieces().forEach(piece -> {
-            MovementService calculator = registry.getCalculator(piece.getType());
+            MovementService calculator = registry.get(piece.getType());
             Set<Position> moves = calculator.calculateAvailableMoves(board, piece);
             resultSet.put(piece, moves);
         });

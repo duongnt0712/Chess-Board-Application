@@ -22,6 +22,11 @@ public enum File {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return name();
+    }
+
     public static File toFile(char value) {
         switch (Character.toUpperCase(value)) {
             case 'A': return A;
