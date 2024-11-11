@@ -60,5 +60,6 @@ sonar {
         property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
         property("sonar.organization", "duongnt0712")
         property("sonar.host.url", "https://sonarcloud.io")
+        property ("sonar.junit.reportPaths", "build/test-results/test")
     }
 }
