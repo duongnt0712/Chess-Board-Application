@@ -1,20 +1,24 @@
 package com.demo.chessboard.service;
 
 import com.demo.chessboard.enums.PieceType;
-import lombok.Getter;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 public class PieceMovementRegistry {
 
-    @Getter
-    private static final PieceMovementRegistry instance = new PieceMovementRegistry();
-
     private final Map<PieceType, MovementService> movementMap;
 
     private PieceMovementRegistry() {
         movementMap = new EnumMap<>(PieceType.class);
+    }
+
+    private static class SingletonHelper {
+        private static final PieceMovementRegistry INSTANCE = new PieceMovementRegistry();
+    }
+
+    public static PieceMovementRegistry getInstance() {
+        return SingletonHelper.INSTANCE;
     }
 
     public synchronized void register(PieceType type, MovementService service) {

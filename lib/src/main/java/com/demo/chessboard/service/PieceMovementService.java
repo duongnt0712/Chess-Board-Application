@@ -1,14 +1,13 @@
 package com.demo.chessboard.service;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.entity.base.Piece;
-import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.enums.Rank;
 import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.exceptions.InvalidInputFormatException;
 import com.demo.chessboard.exceptions.InvalidPieceCodeException;
 import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
+import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,15 +63,9 @@ public class PieceMovementService {
                 default -> throw new InvalidPieceCodeException(pieceCode);
             };
 
-            Position position = parsePosition(positionCode);
+            Position position = PositionHelper.parsePosition(positionCode);
             return factory.createPiece(pieceType, position);
         }
         throw new InvalidInputFormatException(entry);
-    }
-
-    public static Position parsePosition(String positionCode) {
-        File file = File.valueOf(String.valueOf(positionCode.charAt(0)).toUpperCase());
-        Rank rank = Rank.valueOf("R" + positionCode.charAt(1));
-        return new Position(file, rank);
     }
 }

@@ -22,6 +22,8 @@ repositories {
     mavenCentral()
 }
 
+val lombokVersion = "1.18.30"
+
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api(libs.commons.math3)
@@ -29,11 +31,11 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation(libs.guava)
 
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    testCompileOnly("org.projectlombok:lombok:1.18.30")
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 }
 
 testing {
@@ -55,9 +57,8 @@ java {
 
 sonar {
     properties {
-        property("sonar.projectKey", "chess-board")
-        property("sonar.projectName", "Chess Board Application")
-        property("sonar.host.url", "http://localhost:9000")
-        property("sonar.token", System.getenv("SONAR_TOKEN") ?: "")
+        property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
+        property("sonar.organization", "duongnt0712")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }

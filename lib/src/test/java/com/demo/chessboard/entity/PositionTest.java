@@ -5,6 +5,7 @@ import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.Rank;
 import com.demo.chessboard.exceptions.InvalidFileException;
 import com.demo.chessboard.exceptions.InvalidRankException;
+import com.demo.chessboard.utils.PositionHelper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +21,7 @@ class PositionTest {
 
     @Test
     void shouldReturnPositionInvalidException() {
-        assertThrows(InvalidRankException.class, () -> Position.builder().file(File.toFile('D')).rank(Rank.toRank(9)).build());
-        assertThrows(InvalidFileException.class, () -> Position.builder().file(File.toFile('X')).rank(Rank.toRank(3)).build());
+        assertThrows(InvalidRankException.class, () -> PositionHelper.parsePosition("D9"));
+        assertThrows(InvalidFileException.class, () -> PositionHelper.parsePosition("X3"));
     }
 }
