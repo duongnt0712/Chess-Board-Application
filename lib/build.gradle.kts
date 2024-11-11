@@ -10,6 +10,7 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     id("java")
+    id("jacoco")
     id("io.freefair.lombok") version "8.10.2"
     id("org.sonarqube") version "5.1.0.4882"
 }
@@ -48,6 +49,19 @@ testing {
     }
 }
 
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -60,6 +74,6 @@ sonar {
         property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
         property("sonar.organization", "duongnt0712")
         property("sonar.host.url", "https://sonarcloud.io")
-        property ("sonar.junit.reportPaths", "build/test-results/test")
+        property("sonar.junit.reportPaths", "build/test-results/test")
     }
 }
