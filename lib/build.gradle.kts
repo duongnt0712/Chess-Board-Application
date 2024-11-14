@@ -55,11 +55,15 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
 
 jacoco {
     toolVersion = "0.8.12"
-    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
