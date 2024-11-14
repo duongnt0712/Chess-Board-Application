@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SideTest {
+class SideTest {
     @Test
     void testEnumValues() {
         assertEquals(2, Side.values().length, "Side enum should contain exactly 2 values");
