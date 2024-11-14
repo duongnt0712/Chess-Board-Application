@@ -10,6 +10,7 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     id("java")
+    id("maven-publish")
     id("jacoco")
     id("io.freefair.lombok") version "8.10.2"
     id("org.sonarqube") version "5.1.0.4882"
@@ -37,6 +38,24 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/duongnt0712/Chess-Board-Application")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.token") as String? ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 testing {
@@ -78,6 +97,8 @@ sonar {
         property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
         property("sonar.organization", "duongnt0712")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.core.codeCoveragePlugin", "jacoco")
         property("sonar.junit.reportPaths", "build/test-results/test")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
     }
 }
