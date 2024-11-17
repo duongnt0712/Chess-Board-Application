@@ -3,8 +3,7 @@ package com.demo.chessboard.enums;
 import com.demo.chessboard.exceptions.InvalidRankException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RankTest {
 
@@ -54,5 +53,35 @@ class RankTest {
         assertThrows(InvalidRankException.class, () -> Rank.toRank(0), "Expected InvalidRankException for input 0");
         assertThrows(InvalidRankException.class, () -> Rank.toRank(9), "Expected InvalidRankException for input 9");
         assertThrows(InvalidRankException.class, () -> Rank.toRank(-1), "Expected InvalidRankException for input -1");
+    }
+
+    @Test
+    void testMoveForwardValidCases() {
+        assertEquals(Rank.R2, Rank.moveForward(Rank.R1, 1), "Expected Rank.R2 when moving forward 1 step from Rank.R1");
+        assertEquals(Rank.R5, Rank.moveForward(Rank.R3, 2), "Expected Rank.R5 when moving forward 2 steps from Rank.R3");
+        assertEquals(Rank.R8, Rank.moveForward(Rank.R7, 1), "Expected Rank.R8 when moving forward 1 step from Rank.R7");
+    }
+
+    @Test
+    void testMoveForwardInvalidCases() {
+        assertThrows(InvalidRankException.class,
+                () -> Rank.moveForward(Rank.R8, 1), "Expected InvalidRankException for invalid moving forward");
+        assertThrows(InvalidRankException.class,
+                () -> Rank.moveForward(Rank.R6, 4), "Expected InvalidRankException for invalid moving forward");
+        }
+
+    @Test
+    void testMoveBackwardValidCases() {
+        assertEquals(Rank.R6, Rank.moveBackward(Rank.R7, 1), "Expected Rank.R6 when moving backward 1 step from Rank.R7");
+        assertEquals(Rank.R3, Rank.moveBackward(Rank.R5, 2), "Expected Rank.R3 when moving backward 2 steps from Rank.R5");
+        assertEquals(Rank.R1, Rank.moveBackward(Rank.R2, 1), "Expected Rank.R1 when moving backward 1 step from Rank.R2");
+    }
+
+    @Test
+    void testMoveBackwardInvalidCases() {
+        assertThrows(InvalidRankException.class,
+                () -> Rank.moveBackward(Rank.R1, 1), "Expected InvalidFileException for invalid moving backward");
+        assertThrows(InvalidRankException.class,
+                () -> Rank.moveBackward(Rank.R3, 4), "Expected InvalidFileException for invalid moving backward");
     }
 }

@@ -3,8 +3,7 @@ package com.demo.chessboard.enums;
 import com.demo.chessboard.exceptions.InvalidFileException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FileTest {
 
@@ -38,7 +37,7 @@ class FileTest {
     }
 
     @Test
-    void testToFileValidCases() {
+    void testToFileWithCharValidCases() {
         assertEquals(File.A, File.toFile('A'), "Expected File.A for input 'A'");
         assertEquals(File.B, File.toFile('B'), "Expected File.B for input 'B'");
         assertEquals(File.C, File.toFile('C'), "Expected File.C for input 'C'");
@@ -50,9 +49,58 @@ class FileTest {
     }
 
     @Test
-    void testToFileInvalidCases() {
+    void testToFileWithCharInvalidCases() {
         assertThrows(InvalidFileException.class, () -> File.toFile('K'), "Expected InvalidFileException for input 'K'");
         assertThrows(InvalidFileException.class, () -> File.toFile('1'), "Expected InvalidFileException for input '1'");
         assertThrows(InvalidFileException.class, () -> File.toFile('!'), "Expected InvalidFileException for input '!'");
+    }
+
+    @Test
+    void testToFileWithIntValidCases() {
+        assertEquals(File.A, File.toFile(1), "Expected File.A for input 1");
+        assertEquals(File.B, File.toFile(2), "Expected File.B for input 2");
+        assertEquals(File.C, File.toFile(3), "Expected File.C for input 3");
+        assertEquals(File.D, File.toFile(4), "Expected File.D for input 4");
+        assertEquals(File.E, File.toFile(5), "Expected File.E for input 5");
+        assertEquals(File.F, File.toFile(6), "Expected File.F for input 6");
+        assertEquals(File.G, File.toFile(7), "Expected File.G for input 7");
+        assertEquals(File.H, File.toFile(8), "Expected File.H for input 8");
+    }
+
+    @Test
+    void testToFileWithIntInvalidCases() {
+        assertThrows(InvalidFileException.class, () -> File.toFile('K'), "Expected InvalidFileException for input 'K'");
+        assertThrows(InvalidFileException.class, () -> File.toFile('1'), "Expected InvalidFileException for input '1'");
+        assertThrows(InvalidFileException.class, () -> File.toFile('!'), "Expected InvalidFileException for input '!'");
+    }
+
+    @Test
+    void testMoveLeftValidCases() {
+        assertEquals(File.B, File.moveLeft(File.A, 1), "Expected File.B when moving left 1 step from File.A");
+        assertEquals(File.D, File.moveLeft(File.C, 1), "Expected File.D when moving left 1 step from File.C");
+        assertEquals(File.H, File.moveLeft(File.F, 2), "Expected File.H when moving left 2 steps from File.F");
+    }
+
+    @Test
+    void testMoveLeftInvalidCases() {
+        assertThrows(InvalidFileException.class,
+                () -> File.moveLeft(File.H, 1), "Expected InvalidFileException for invalid moving left");
+        assertThrows(InvalidFileException.class,
+                () -> File.moveLeft(File.E, 4), "Expected InvalidFileException for invalid moving left");
+    }
+
+    @Test
+    void testMoveRightValidCases() {
+        assertEquals(File.A, File.moveRight(File.B, 1), "Expected File.A when moving right 1 step from File.B");
+        assertEquals(File.C, File.moveRight(File.D, 1), "Expected File.C when moving right 1 step from File.D");
+        assertEquals(File.E, File.moveRight(File.G, 2), "Expected File.E when moving right 2 steps from File.G");
+    }
+
+    @Test
+    void testMoveRightInvalidCases() {
+        assertThrows(InvalidFileException.class,
+                () -> File.moveRight(File.A, 1), "Expected InvalidFileException for invalid moving right");
+        assertThrows(InvalidFileException.class,
+                () -> File.moveRight(File.D, 4), "Expected InvalidFileException for invalid moving right");
     }
 }
