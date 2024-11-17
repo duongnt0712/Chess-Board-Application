@@ -24,7 +24,7 @@ public enum File {
 
     @Override
     public String toString() {
-        return name();
+        return this.name();
     }
 
     public static File toFile(char value) {
@@ -39,5 +39,22 @@ public enum File {
             case 'H': return H;
             default: throw new InvalidFileException(value);
         }
+    }
+
+    public static File toFile(int value) {
+        for (File file : File.values()) {
+            if (file.getValue() == value) {
+                return file;
+            }
+        }
+        throw new InvalidFileException(value);
+    }
+
+    public static File moveLeft(File file, int steps) {
+        return File.toFile(file.getValue() + steps);
+    }
+
+    public static File moveRight(File file, int steps) {
+        return File.toFile(file.getValue() - steps);
     }
 }

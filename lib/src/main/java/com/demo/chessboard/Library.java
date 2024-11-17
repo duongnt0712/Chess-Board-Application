@@ -18,9 +18,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Library {
-    public boolean someLibraryMethod() {
-        return true;
-    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the pieces (e.g., 'W: KE2, QD1, RA1, ...'): ");

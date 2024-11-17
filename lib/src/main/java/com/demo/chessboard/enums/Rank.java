@@ -28,16 +28,20 @@ public enum Rank {
     }
 
     public static Rank toRank(int value) {
-        switch (value) {
-            case 1: return R1;
-            case 2: return R2;
-            case 3: return R3;
-            case 4: return R4;
-            case 5: return R5;
-            case 6: return R6;
-            case 7: return R7;
-            case 8: return R8;
-            default: throw new InvalidRankException(value);
+        for (Rank rank : Rank.values()) {
+            if (rank.getValue() == value) {
+                return rank;
+            }
         }
+        throw new InvalidRankException(value);
     }
+
+    public static Rank moveForward(Rank rank, int steps) {
+        return Rank.toRank(rank.getValue() + steps);
+    }
+
+    public static Rank moveBackward(Rank rank, int steps) {
+        return Rank.toRank(rank.getValue() - steps);
+    }
+
 }
