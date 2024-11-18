@@ -69,9 +69,9 @@ class FileTest {
 
     @Test
     void testToFileWithIntInvalidCases() {
-        assertThrows(InvalidFileException.class, () -> File.toFile('K'), "Expected InvalidFileException for input 'K'");
-        assertThrows(InvalidFileException.class, () -> File.toFile('1'), "Expected InvalidFileException for input '1'");
-        assertThrows(InvalidFileException.class, () -> File.toFile('!'), "Expected InvalidFileException for input '!'");
+        assertThrows(InvalidFileException.class, () -> File.toFile(9), "Expected InvalidFileException for input 1");
+        assertThrows(InvalidFileException.class, () -> File.toFile(-1), "Expected InvalidFileException for input -1");
+        assertThrows(InvalidFileException.class, () -> File.toFile(0), "Expected InvalidFileException for input 0");
     }
 
     @Test

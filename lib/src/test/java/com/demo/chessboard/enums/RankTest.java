@@ -64,11 +64,9 @@ class RankTest {
 
     @Test
     void testMoveForwardInvalidCases() {
-        assertThrows(InvalidRankException.class,
-                () -> Rank.moveForward(Rank.R8, 1), "Expected InvalidRankException for invalid moving forward");
-        assertThrows(InvalidRankException.class,
-                () -> Rank.moveForward(Rank.R6, 4), "Expected InvalidRankException for invalid moving forward");
-        }
+        assertThrows(InvalidRankException.class, () -> Rank.moveForward(Rank.R8, 1), "Expected InvalidRankException for invalid moving forward");
+        assertThrows(InvalidRankException.class, () -> Rank.moveForward(Rank.R6, 4), "Expected InvalidRankException for invalid moving forward");
+    }
 
     @Test
     void testMoveBackwardValidCases() {
@@ -79,9 +77,7 @@ class RankTest {
 
     @Test
     void testMoveBackwardInvalidCases() {
-        assertThrows(InvalidRankException.class,
-                () -> Rank.moveBackward(Rank.R1, 1), "Expected InvalidFileException for invalid moving backward");
-        assertThrows(InvalidRankException.class,
-                () -> Rank.moveBackward(Rank.R3, 4), "Expected InvalidFileException for invalid moving backward");
+        assertThrows(InvalidRankException.class, () -> Rank.moveBackward(Rank.R1, 1), "Expected InvalidFileException for invalid moving backward");
+        assertThrows(InvalidRankException.class, () -> Rank.moveBackward(Rank.R3, 4), "Expected InvalidFileException for invalid moving backward");
     }
 }
