@@ -26,14 +26,13 @@ public class PieceMovementService {
 
     public static ChessBoard parseInput(String input) {
         ChessBoard board = new ChessBoard();
-        String[] lines = input.split("W:|B:");
+        String[] lines = input.split("\n");
 
         for (String line : lines) {
             if (line.trim().isEmpty()) continue;
-
             Side side = line.toUpperCase().startsWith("W") ? Side.WHITE : Side.BLACK;
             AbstractPieceFactory factory = new PieceFactory(side);
-            String[] pieceEntries = line.split(",");
+            String[] pieceEntries = line.replace("W: ", "").replace("B: ", "").split(",");
             for (String entry : pieceEntries) {
                 entry = entry.trim();
                 if (!entry.isEmpty()) {
