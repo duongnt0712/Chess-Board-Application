@@ -18,8 +18,8 @@ class PositionHelperTest {
 
     @BeforeEach
     void setUp() {
-        whitePawnPosition = new Position(File.E, Rank.R2);  // White pawn at E2
-        blackPawnPosition = new Position(File.E, Rank.R7);  // Black pawn at E7
+        whitePawnPosition = new Position(File.E, Rank.R2);
+        blackPawnPosition = new Position(File.E, Rank.R7);
     }
 
     @Test
@@ -38,7 +38,7 @@ class PositionHelperTest {
     @Test
     void testParsePosition_InvalidInput() {
         // Given: An invalid position code string
-        String positionCode = "I9";  // Invalid position (I9 doesn't exist)
+        String positionCode = "I9";
 
         // When & Then: Parsing the position string should throw an IllegalArgumentException
         assertThrows(IllegalArgumentException.class, () -> PositionHelper.parsePosition(positionCode));
@@ -63,7 +63,7 @@ class PositionHelperTest {
         // Given: A position and invalid horizontal and vertical steps
         Position position = whitePawnPosition;
         int horizontalSteps = 0;
-        int verticalSteps = 9;  // Invalid for a pawn
+        int verticalSteps = 9;
 
         // When: Checking if the move is valid
         boolean isValid = PositionHelper.isValidMove(position, horizontalSteps, verticalSteps);
@@ -92,7 +92,7 @@ class PositionHelperTest {
         // Given: A position on the edge of the board (e.g., E8)
         Position position = new Position(File.E, Rank.R8);
         int horizontalSteps = 0;
-        int verticalSteps = 1;  // Moving off the board
+        int verticalSteps = 1;
 
         // Then: The new position should be true
         assertThrows(InvalidRankException.class, () -> PositionHelper.move(position, horizontalSteps, verticalSteps));
@@ -100,7 +100,7 @@ class PositionHelperTest {
 
     @Test
     void testIsInitialPosition_WhiteSide() {
-        // Given: A white pawn at E2 (should be the initial position)
+        // Given: A white pawn at E2
         Position position = whitePawnPosition;
         Side side = Side.WHITE;
 
@@ -113,7 +113,7 @@ class PositionHelperTest {
 
     @Test
     void testIsInitialPosition_BlackSide() {
-        // Given: A black pawn at E7 (should be the initial position)
+        // Given: A black pawn at E7
         Position position = blackPawnPosition;
         Side side = Side.BLACK;
 

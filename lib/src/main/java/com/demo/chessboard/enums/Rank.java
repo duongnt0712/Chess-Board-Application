@@ -36,14 +36,6 @@ public enum Rank {
         throw new InvalidRankException(value);
     }
 
-    public static Rank moveForward(Rank rank, int steps) {
-        return Rank.toRank(rank.getValue() + steps);
-    }
-
-    public static Rank moveBackward(Rank rank, int steps) {
-        return Rank.toRank(rank.getValue() - steps);
-    }
-
     public static Rank move(Rank rank, int steps) {
         return Rank.toRank(rank.getValue() + steps);
     }

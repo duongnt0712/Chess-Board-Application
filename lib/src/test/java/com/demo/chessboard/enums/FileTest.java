@@ -76,31 +76,31 @@ class FileTest {
 
     @Test
     void testMoveLeftValidCases() {
-        assertEquals(File.B, File.moveLeft(File.A, 1), "Expected File.B when moving left 1 step from File.A");
-        assertEquals(File.D, File.moveLeft(File.C, 1), "Expected File.D when moving left 1 step from File.C");
-        assertEquals(File.H, File.moveLeft(File.F, 2), "Expected File.H when moving left 2 steps from File.F");
+        assertEquals(File.B, File.move(File.A, 1), "Expected File.B when moving left 1 step from File.A");
+        assertEquals(File.D, File.move(File.C, 1), "Expected File.D when moving left 1 step from File.C");
+        assertEquals(File.H, File.move(File.F, 2), "Expected File.H when moving left 2 steps from File.F");
     }
 
     @Test
     void testMoveLeftInvalidCases() {
         assertThrows(InvalidFileException.class,
-                () -> File.moveLeft(File.H, 1), "Expected InvalidFileException for invalid moving left");
+                () -> File.move(File.H, 1), "Expected InvalidFileException for invalid moving left");
         assertThrows(InvalidFileException.class,
-                () -> File.moveLeft(File.E, 4), "Expected InvalidFileException for invalid moving left");
+                () -> File.move(File.E, 4), "Expected InvalidFileException for invalid moving left");
     }
 
     @Test
     void testMoveRightValidCases() {
-        assertEquals(File.A, File.moveRight(File.B, 1), "Expected File.A when moving right 1 step from File.B");
-        assertEquals(File.C, File.moveRight(File.D, 1), "Expected File.C when moving right 1 step from File.D");
-        assertEquals(File.E, File.moveRight(File.G, 2), "Expected File.E when moving right 2 steps from File.G");
+        assertEquals(File.A, File.move(File.B, -1), "Expected File.A when moving right 1 step from File.B");
+        assertEquals(File.C, File.move(File.D, -1), "Expected File.C when moving right 1 step from File.D");
+        assertEquals(File.E, File.move(File.G, -2), "Expected File.E when moving right 2 steps from File.G");
     }
 
     @Test
     void testMoveRightInvalidCases() {
         assertThrows(InvalidFileException.class,
-                () -> File.moveRight(File.A, 1), "Expected InvalidFileException for invalid moving right");
+                () -> File.move(File.A, -1), "Expected InvalidFileException for invalid moving right");
         assertThrows(InvalidFileException.class,
-                () -> File.moveRight(File.D, 4), "Expected InvalidFileException for invalid moving right");
+                () -> File.move(File.D, -4), "Expected InvalidFileException for invalid moving right");
     }
 }

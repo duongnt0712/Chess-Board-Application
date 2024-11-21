@@ -57,27 +57,27 @@ class RankTest {
 
     @Test
     void testMoveForwardValidCases() {
-        assertEquals(Rank.R2, Rank.moveForward(Rank.R1, 1), "Expected Rank.R2 when moving forward 1 step from Rank.R1");
-        assertEquals(Rank.R5, Rank.moveForward(Rank.R3, 2), "Expected Rank.R5 when moving forward 2 steps from Rank.R3");
-        assertEquals(Rank.R8, Rank.moveForward(Rank.R7, 1), "Expected Rank.R8 when moving forward 1 step from Rank.R7");
+        assertEquals(Rank.R2, Rank.move(Rank.R1, 1), "Expected Rank.R2 when moving forward 1 step from Rank.R1");
+        assertEquals(Rank.R5, Rank.move(Rank.R3, 2), "Expected Rank.R5 when moving forward 2 steps from Rank.R3");
+        assertEquals(Rank.R8, Rank.move(Rank.R7, 1), "Expected Rank.R8 when moving forward 1 step from Rank.R7");
     }
 
     @Test
     void testMoveForwardInvalidCases() {
-        assertThrows(InvalidRankException.class, () -> Rank.moveForward(Rank.R8, 1), "Expected InvalidRankException for invalid moving forward");
-        assertThrows(InvalidRankException.class, () -> Rank.moveForward(Rank.R6, 4), "Expected InvalidRankException for invalid moving forward");
+        assertThrows(InvalidRankException.class, () -> Rank.move(Rank.R8, 1), "Expected InvalidRankException for invalid moving forward");
+        assertThrows(InvalidRankException.class, () -> Rank.move(Rank.R6, 4), "Expected InvalidRankException for invalid moving forward");
     }
 
     @Test
     void testMoveBackwardValidCases() {
-        assertEquals(Rank.R6, Rank.moveBackward(Rank.R7, 1), "Expected Rank.R6 when moving backward 1 step from Rank.R7");
-        assertEquals(Rank.R3, Rank.moveBackward(Rank.R5, 2), "Expected Rank.R3 when moving backward 2 steps from Rank.R5");
-        assertEquals(Rank.R1, Rank.moveBackward(Rank.R2, 1), "Expected Rank.R1 when moving backward 1 step from Rank.R2");
+        assertEquals(Rank.R6, Rank.move(Rank.R7, -1), "Expected Rank.R6 when moving backward 1 step from Rank.R7");
+        assertEquals(Rank.R3, Rank.move(Rank.R5, -2), "Expected Rank.R3 when moving backward 2 steps from Rank.R5");
+        assertEquals(Rank.R1, Rank.move(Rank.R2, -1), "Expected Rank.R1 when moving backward 1 step from Rank.R2");
     }
 
     @Test
     void testMoveBackwardInvalidCases() {
-        assertThrows(InvalidRankException.class, () -> Rank.moveBackward(Rank.R1, 1), "Expected InvalidFileException for invalid moving backward");
-        assertThrows(InvalidRankException.class, () -> Rank.moveBackward(Rank.R3, 4), "Expected InvalidFileException for invalid moving backward");
+        assertThrows(InvalidRankException.class, () -> Rank.move(Rank.R1, -1), "Expected InvalidFileException for invalid moving backward");
+        assertThrows(InvalidRankException.class, () -> Rank.move(Rank.R3, -4), "Expected InvalidFileException for invalid moving backward");
     }
 }

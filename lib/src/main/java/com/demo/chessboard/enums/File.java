@@ -50,14 +50,6 @@ public enum File {
         throw new InvalidFileException(value);
     }
 
-    public static File moveLeft(File file, int steps) {
-        return File.toFile(file.getValue() + steps);
-    }
-
-    public static File moveRight(File file, int steps) {
-        return File.toFile(file.getValue() - steps);
-    }
-
     public static File move(File file, int steps) {
         return File.toFile(file.getValue() + steps);
     }
