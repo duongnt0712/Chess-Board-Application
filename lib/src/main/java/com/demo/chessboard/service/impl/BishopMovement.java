@@ -4,12 +4,13 @@ import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.MovementService;
-import com.demo.chessboard.utils.PositionHelper;
+import com.demo.chessboard.utils.MovementHelper;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class BishopMovement implements MovementService {
+
     @Override
     public Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece) {
         Set<Position> moves = new HashSet<>();
@@ -21,22 +22,7 @@ public class BishopMovement implements MovementService {
             int fileDirection = 0;
             int rankDirection = 0;
 
-            while (true) {
-                fileDirection += direction[0];
-                rankDirection += direction[1];
-                if ( !PositionHelper.isValidMove(currentPosition, fileDirection, rankDirection) ) break;
-                Position newPosition = PositionHelper.move(currentPosition, fileDirection, rankDirection);
-
-                if (board.isEmpty(newPosition)) {
-                    moves.add(newPosition);
-                    continue;
-                }
-
-                if (board.isOccupiedByOpponent(newPosition, piece.getSide())) {
-                    moves.add(newPosition);
-                }
-                break;
-            }
+            MovementHelper.moveCrossShape(board, piece, direction, fileDirection, rankDirection, currentPosition, moves);
         }
         return moves;
     }

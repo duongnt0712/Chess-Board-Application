@@ -5,7 +5,6 @@ import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.MovementService;
 import com.demo.chessboard.utils.MovementHelper;
-import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.HashSet;
 import java.util.Set;

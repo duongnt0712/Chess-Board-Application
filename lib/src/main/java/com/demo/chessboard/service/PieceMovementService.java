@@ -2,20 +2,12 @@ package com.demo.chessboard.service;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.enums.Side;
-import com.demo.chessboard.exceptions.InvalidInputFormatException;
-import com.demo.chessboard.exceptions.InvalidPieceCodeException;
-import com.demo.chessboard.factory.AbstractPieceFactory;
-import com.demo.chessboard.factory.PieceFactory;
 import com.demo.chessboard.service.impl.*;
 import com.demo.chessboard.utils.PieceHelper;
-import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Convert the input data to the right piece format
