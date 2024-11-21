@@ -44,4 +44,9 @@ public enum Rank {
         return Rank.toRank(rank.getValue() - steps);
     }
 
+    public static Rank move(Rank rank, int steps) {
+        return Rank.toRank(rank.getValue() + steps);
+    }
+
+
 }

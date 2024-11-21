@@ -57,4 +57,8 @@ public enum File {
     public static File moveRight(File file, int steps) {
         return File.toFile(file.getValue() - steps);
     }
+
+    public static File move(File file, int steps) {
+        return File.toFile(file.getValue() + steps);
+    }
 }

@@ -5,44 +5,21 @@ package com.demo.chessboard;
 
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
-import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.service.ChessBoard;
-import com.demo.chessboard.service.MovementService;
-import com.demo.chessboard.service.PieceMovementRegistry;
 import com.demo.chessboard.service.PieceMovementService;
-import com.demo.chessboard.service.impl.*;
-
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Library {
     public static void main(String[] args) {
+        PieceMovementService service = PieceMovementService.createPieceMovementService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the pieces (e.g., 'W: KE2, QD1, RA1, ...'): ");
         String input = scanner.nextLine();
 
-        ChessBoard board = PieceMovementService.parseInput(input);
-
-        PieceMovementRegistry registry = PieceMovementRegistry.getInstance();
-        registry.register(PieceType.BISHOP, new BishopMovement());
-        registry.register(PieceType.KING, new KingMovement());
-        registry.register(PieceType.KNIGHT, new KnightMovement());
-        registry.register(PieceType.PAWN, new PawnMovement());
-        registry.register(PieceType.QUEEN, new QueenMovement());
-        registry.register(PieceType.ROOK, new RookMovement());
+        Map<Piece, Set<Position>> resultSet = service.initializeAndCalculateMoves(input);
 
         System.out.println("\n==========RESULT==========");
-        Map<Piece, Set<Position>> resultSet = new HashMap<>();
-
-        board.getAllPieces().forEach(piece -> {
-            MovementService calculator = registry.get(piece.getType());
-            Set<Position> moves = calculator.calculateAvailableMoves(board, piece);
-            resultSet.put(piece, moves);
-        });
-
         resultSet.forEach((piece, moves) -> System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves));
-
     }
 }
