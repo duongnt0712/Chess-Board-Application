@@ -17,7 +17,7 @@ public class PositionHelper {
         return new Position(file, rank);
     }
 
-    public static boolean isValidMove(Position position, int horizontalSteps, int verticalSteps) {
+    public static boolean isValidPosition(Position position, int horizontalSteps, int verticalSteps) {
         int newFileValue = position.file().getValue() + horizontalSteps;
         int newRankValue = position.rank().getValue() + verticalSteps;
         return newFileValue >= 1 && newFileValue <= 8 && newRankValue >= 1 && newRankValue <= 8;

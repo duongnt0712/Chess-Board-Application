@@ -4,6 +4,7 @@ import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.MovementService;
+import com.demo.chessboard.utils.MovementHelper;
 import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.HashSet;
@@ -21,14 +22,9 @@ public class KnightMovement implements MovementService {
         };
 
         for (int[] move : knightMoves) {
-            if ( PositionHelper.isValidMove(currentPosition, move[0], move[1]) ) {
-                Position newPosition = PositionHelper.move(currentPosition, move[0], move[1]);
-                if (board.isEmpty(newPosition) || board.isOccupiedByOpponent(newPosition, piece.getSide())) {
-                    moves.add(newPosition);
-                }
-            }
+            MovementHelper.addValidMoveOrCapture(board, piece, move[0], move[1], currentPosition, moves);
         }
-
         return moves;
     }
+
 }

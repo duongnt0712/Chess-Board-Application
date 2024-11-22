@@ -4,6 +4,7 @@ import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.MovementService;
+import com.demo.chessboard.utils.MovementHelper;
 import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.HashSet;
@@ -22,12 +23,7 @@ public class KingMovement implements MovementService {
                 // Skip the current position
                 if (dx == 0 && dy == 0) continue;
 
-                if ( PositionHelper.isValidMove(currentPosition, dx, dy) ) {
-                    Position newPosition = PositionHelper.move(currentPosition, dx, dy);
-                    if (board.isEmpty(newPosition) || board.isOccupiedByOpponent(newPosition, piece.getSide())) {
-                        moves.add(newPosition);
-                    }
-                }
+                MovementHelper.addValidMoveOrCapture(board, piece,  dx, dy, currentPosition, moves);
             }
         }
 

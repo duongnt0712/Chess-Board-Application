@@ -52,7 +52,7 @@ class PositionHelperTest {
         int verticalSteps = 1;
 
         // When: Checking if the move is valid
-        boolean isValid = PositionHelper.isValidMove(position, horizontalSteps, verticalSteps);
+        boolean isValid = PositionHelper.isValidPosition(position, horizontalSteps, verticalSteps);
 
         // Then: The move should be valid
         assertTrue(isValid);
@@ -66,7 +66,7 @@ class PositionHelperTest {
         int verticalSteps = 9;
 
         // When: Checking if the move is valid
-        boolean isValid = PositionHelper.isValidMove(position, horizontalSteps, verticalSteps);
+        boolean isValid = PositionHelper.isValidPosition(position, horizontalSteps, verticalSteps);
 
         // Then: The move should be invalid
         assertFalse(isValid);

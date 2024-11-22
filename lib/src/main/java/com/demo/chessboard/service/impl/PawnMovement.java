@@ -18,29 +18,40 @@ public class PawnMovement implements MovementService {
         Position currentPosition = piece.getPosition();
         int direction = piece.getSide() == Side.WHITE ? 1 : -1;
 
+        handleForwardMoves(board, piece, currentPosition, direction, moves);
+        handleCaptureMoves(board, piece, currentPosition, direction, moves);
+        return moves;
+    }
+
+    private void handleCaptureMoves(ChessBoard board, Piece piece, Position currentPosition, int direction, Set<Position> moves) {
+        int[] pawnMovement = {-1, 1};
+
+        for (int dx : pawnMovement) {
+            if (!PositionHelper.isValidPosition(currentPosition, dx, direction)) {
+                continue;
+            }
+            Position diagonal = PositionHelper.move(currentPosition, dx, direction);
+            if (board.isOccupiedByOpponent(diagonal, piece.getSide())) {
+                moves.add(diagonal);
+            }
+        }
+    }
+
+    private void handleForwardMoves(ChessBoard board, Piece piece, Position currentPosition, int direction, Set<Position> moves) {
         // Forward move
         Position forward = PositionHelper.move(currentPosition, 0, direction);
-        if (board.isEmpty(forward)) {
-            moves.add(forward);
-
-            // Double move from initial position
-            if (PositionHelper.isInitialPosition(piece.getSide(), currentPosition)) {
-                Position doubleForward = PositionHelper.move(currentPosition, 0, direction * 2);
-                if (board.isEmpty(doubleForward)) {
-                    moves.add(doubleForward);
-                }
-            }
+        if (!board.isEmpty(forward)) {
+            return;
         }
+        moves.add(forward);
 
-        // Captures
-        for (int dx : new int[]{-1, 1}) {
-            if (PositionHelper.isValidMove(currentPosition, dx, direction)) {
-                Position diagonal = PositionHelper.move(currentPosition, dx, direction);
-                if (board.isOccupiedByOpponent(diagonal, piece.getSide())) {
-                    moves.add(diagonal);
-                }
-            }
+        // Double move from initial position
+        if (!PositionHelper.isInitialPosition(piece.getSide(), currentPosition)) {
+            return;
         }
-        return moves;
+        Position doubleForward = PositionHelper.move(currentPosition, 0, direction * 2);
+        if (board.isEmpty(doubleForward)) {
+            moves.add(doubleForward);
+        }
     }
 }

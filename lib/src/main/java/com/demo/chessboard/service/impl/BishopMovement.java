@@ -5,6 +5,7 @@ import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.service.ChessBoard;
 import com.demo.chessboard.service.MovementService;
 import com.demo.chessboard.utils.MovementHelper;
+import com.demo.chessboard.utils.PositionHelper;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,12 +19,9 @@ public class BishopMovement implements MovementService {
 
         int[][] directions = { {1, 1}, {1, -1}, {-1, 1}, {-1, -1} };
 
-        for (int[] direction : directions) {
-            int fileDirection = 0;
-            int rankDirection = 0;
-
-            MovementHelper.moveCrossShape(board, piece, direction, fileDirection, rankDirection, currentPosition, moves);
-        }
+        MovementHelper.moveCrossShape(board, piece, directions, currentPosition, moves);
         return moves;
     }
+
+
 }

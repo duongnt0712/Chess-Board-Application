@@ -17,12 +17,7 @@ public class RookMovement implements MovementService {
 
         int[][] directions = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
 
-        for (int[] direction : directions) {
-            int fileDirection = 0;
-            int rankDirection = 0;
-
-            MovementHelper.moveCrossShape(board, piece, direction, fileDirection, rankDirection, currentPosition, moves);
-        }
+        MovementHelper.moveCrossShape(board, piece, directions, currentPosition, moves);
 
         return moves;
 
