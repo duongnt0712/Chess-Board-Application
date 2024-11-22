@@ -37,12 +37,11 @@ public class MovementHelper {
         }
     }
 
-
     public static void addValidMoveOrCapture(ChessBoard board, Piece piece, int horizontalSteps, int verticalSteps, Position currentPosition, Set<Position> moves) {
-        if ( PositionHelper.isValidPosition(currentPosition, horizontalSteps, verticalSteps) ) {
+        if ( !PositionHelper.isValidPosition(currentPosition, horizontalSteps, verticalSteps) ) {
             return;
         }
-        Position newPosition = PositionHelper.move(currentPosition, verticalSteps, verticalSteps);
+        Position newPosition = PositionHelper.move(currentPosition, horizontalSteps, verticalSteps);
         if (board.isEmpty(newPosition) || board.isOccupiedByOpponent(newPosition, piece.getSide())) {
             moves.add(newPosition);
         }

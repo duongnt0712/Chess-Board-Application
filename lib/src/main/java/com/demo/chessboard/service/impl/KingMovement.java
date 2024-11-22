@@ -23,7 +23,7 @@ public class KingMovement implements MovementService {
                 // Skip the current position
                 if (dx == 0 && dy == 0) continue;
 
-                MovementHelper.addValidMoveOrCapture(board, piece,  dx, dy, currentPosition, moves);
+                MovementHelper.addValidMoveOrCapture(board, piece, dx, dy, currentPosition, moves);
             }
         }
 
