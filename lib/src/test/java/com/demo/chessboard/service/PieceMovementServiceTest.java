@@ -9,11 +9,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PieceMovementServiceTest {
+class PieceMovementServiceTest {
+
+    Logger logger = Logger.getLogger(getClass().getName());
+
     @Test
     void testInitializeAndCalculateMoves_OnePiece() {
         // Input representing a chessboard with one BISHOP at position D4
@@ -47,24 +51,24 @@ public class PieceMovementServiceTest {
         assertEquals(expectedMoves.size(), moves.size(), "The number of moves should match the expected");
         assertTrue(moves.containsAll(expectedMoves), "All expected moves should be present in the result");
     }
-//
-//    @Test
-//    void testInitializeAndCalculateMoves_MultiPieces() {
-//        // Input representing a chessboard with one BISHOP at position D4
-//        String[] input = {"W: KE2, QD1, RA1, NB1, NF7, BC1, BC4, PA2, PB2, PC2, PD2, PG3", "B: KE8, QH1, RA8, RH8, ND1, BC8, PA7, PB7, PC7, PD7, PE5, PG7, PH7"};
-//
-//        // Create the service
-//        PieceMovementService service = PieceMovementService.createPieceMovementService();
-//
-//        // Run the method under test
-//        Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
-//
-//        System.out.println("\n==========RESULT==========");
-//        result.forEach((piece, moves) -> System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves));
-//
-//        // Assertions
-//        assertEquals(24, result.size());
-//
+
+    @Test
+    void testInitializeAndCalculateMoves_MultiPieces() {
+        // Input representing a chessboard with one BISHOP at position D4
+        String[] input = {"W: KE2, QD1, RA1, NB1, NF7, BC1, BC4, PA2, PB2, PC2, PD2, PG3", "B: KE8, QH1, RA8, RH8, ND1, BC8, PA7, PB7, PC7, PD7, PE5, PG7, PH7"};
+
+        // Create the service
+        PieceMovementService service = PieceMovementService.createPieceMovementService();
+
+        // Run the method under test
+        Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
+
+        logger.info("\n==========RESULT==========");
+        result.forEach((piece, moves) -> logger.info(String.format("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves)));
+
+        // Assertions
+        assertEquals(24, result.size());
+
 //        Piece king = result.;
 //        Set<Position> moves = result.get(king);
 //
@@ -83,5 +87,5 @@ public class PieceMovementServiceTest {
 //        );
 //        assertEquals(expectedMoves.size(), moves.size(), "The number of moves should match the expected");
 //        assertTrue(moves.containsAll(expectedMoves), "All expected moves should be present in the result");
-//    }
+    }
 }

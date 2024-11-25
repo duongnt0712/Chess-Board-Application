@@ -22,10 +22,8 @@ public class PieceHelper {
     // TODO: Fix this logic to be multiple color
     public static ChessBoard parseInput(String[] input) {
         ChessBoard board = new ChessBoard();
-//        String[] lines = input.split("B:");
 
         for (String line : input) {
-//            if (line.trim().isEmpty()) continue;
             Side side = line.toUpperCase().startsWith("W") ? Side.WHITE : Side.BLACK;
             AbstractPieceFactory factory = new PieceFactory(side);
 

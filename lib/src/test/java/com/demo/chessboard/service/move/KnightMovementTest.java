@@ -16,7 +16,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class KnightMovementTest {
+class KnightMovementTest {
 
     private ChessBoard board;
     private Knight knight;

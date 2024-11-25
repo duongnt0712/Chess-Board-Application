@@ -11,19 +11,11 @@ import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.exceptions.InvalidInputFormatException;
 import com.demo.chessboard.exceptions.InvalidPieceCodeException;
 import com.demo.chessboard.utils.PieceHelper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PieceHelperTest {
-
-    private ChessBoard board;
-
-    @BeforeEach
-    void setUp() {
-        board = new ChessBoard();
-    }
 
     @Test
     void testParseInput_ValidInput() {
