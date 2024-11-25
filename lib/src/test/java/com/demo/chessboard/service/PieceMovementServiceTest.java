@@ -1,5 +1,6 @@
 package com.demo.chessboard.service;
 
+import com.demo.chessboard.entity.Queen;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.enums.PieceType;
@@ -20,16 +21,14 @@ class PieceMovementServiceTest {
 
     @Test
     void testInitializeAndCalculateMoves_OnePiece() {
-        // Input representing a chessboard with one BISHOP at position D4
+        // Given: Input representing a chessboard with one BISHOP at position D4
         String[] input = {"W: BD4"};
 
-        // Create the service
+        // When: Create the service and run the method under test
         PieceMovementService service = PieceMovementService.createPieceMovementService();
-
-        // Run the method under test
         Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
 
-        // Assertions
+        // Then: Validate the size
         assertEquals(1, result.size(), "There should be one piece in the result");
 
         Piece bishop = result.keySet().iterator().next();
@@ -54,28 +53,26 @@ class PieceMovementServiceTest {
 
     @Test
     void testInitializeAndCalculateMoves_MultiPieces() {
-        // Input representing a chessboard with one BISHOP at position D4
+        // Given: Input representing a chessboard with multi pieces
         String[] input = {"W: KE2, QD1, RA1, NB1, NF7, BC1, BC4, PA2, PB2, PC2, PD2, PG3", "B: KE8, QH1, RA8, RH8, ND1, BC8, PA7, PB7, PC7, PD7, PE5, PG7, PH7"};
 
-        // Create the service
+        // When: Create the service and run the method under test
         PieceMovementService service = PieceMovementService.createPieceMovementService();
-
-        // Run the method under test
         Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
 
+        // Then: Assertions
         logger.info("\n==========RESULT==========");
         result.forEach((piece, moves) -> logger.info(String.format("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves)));
 
-        // Assertions
+        // Validate the size
         assertEquals(24, result.size());
-
-//        Piece king = result.;
-//        Set<Position> moves = result.get(king);
+//        Piece queen = Queen.builder().side(Side.WHITE).position(PositionHelper.parsePosition("D1")).build();
+//        Set<Position> moves = result.get(queen);
 //
 //        // Validate the piece properties
-//        assertEquals(PieceType.BISHOP, king.getType(), "The piece should be a bishop");
-//        assertEquals(Side.WHITE, king.getSide(), "The piece should belong to the WHITE side");
-//        assertEquals(PositionHelper.parsePosition("D4"), king.getPosition(), "The piece should be at position D4");
+//        assertEquals(PieceType.QUEEN, queen.getType(), "The piece should be a queen");
+//        assertEquals(Side.WHITE, queen.getSide(), "The piece should belong to the WHITE side");
+//        assertEquals(PositionHelper.parsePosition("D1"), queen.getPosition(), "The piece should be at position D1");
 //
 //        // Validate the calculated moves
 //        Set<Position> expectedMoves = Set.of(
@@ -86,6 +83,5 @@ class PieceMovementServiceTest {
 //                PositionHelper.parsePosition("H8")
 //        );
 //        assertEquals(expectedMoves.size(), moves.size(), "The number of moves should match the expected");
-//        assertTrue(moves.containsAll(expectedMoves), "All expected moves should be present in the result");
     }
 }

@@ -6,6 +6,7 @@ import com.demo.chessboard.enums.PieceType;
 import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.exceptions.InvalidInputFormatException;
 import com.demo.chessboard.exceptions.InvalidPieceCodeException;
+import com.demo.chessboard.exceptions.InvalidSideException;
 import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
 import com.demo.chessboard.entity.ChessBoard;
@@ -19,16 +20,14 @@ public class PieceHelper {
         throw new IllegalStateException("Utility class");
     }
 
-    // TODO: Fix this logic to be multiple color
-    public static ChessBoard parseInput(String[] input) {
+    public static ChessBoard parseInput(String[] lines) {
         ChessBoard board = new ChessBoard();
 
-        for (String line : input) {
-            Side side = line.toUpperCase().startsWith("W") ? Side.WHITE : Side.BLACK;
+        for (String line : lines) {
+            String[] input = line.split(":");
+            Side side = getSide(input[0].trim());
             AbstractPieceFactory factory = new PieceFactory(side);
-
-            String[] pieceEntries = line.replace("W: ", "").replace("B: ", "").split(",");
-
+            String[] pieceEntries = input[1].split(",");
             createPieceFromEntries(pieceEntries, factory, board);
         }
         return board;
@@ -69,6 +68,14 @@ public class PieceHelper {
             case "B" -> PieceType.BISHOP;
             case "P" -> PieceType.PAWN;
             default -> throw new InvalidPieceCodeException(pieceCode);
+        };
+    }
+
+    private static Side getSide(String side) {
+        return switch (side.toUpperCase()) {
+            case "W" -> Side.WHITE;
+            case "B" -> Side.BLACK;
+            default -> throw new InvalidSideException(side);
         };
     }
 }

@@ -1,4 +1,4 @@
-package com.demo.chessboard.service.move;
+package com.demo.chessboard.move;
 
 import com.demo.chessboard.entity.Queen;
 import com.demo.chessboard.entity.base.Piece;
@@ -7,7 +7,6 @@ import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.Rank;
 import com.demo.chessboard.enums.Side;
 import com.demo.chessboard.entity.ChessBoard;
-import com.demo.chessboard.move.QueenMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

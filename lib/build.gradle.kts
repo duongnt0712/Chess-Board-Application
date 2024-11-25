@@ -7,6 +7,7 @@
  */
 
 plugins {
+    `java-library`
     id("java")
     id("maven-publish")
     id("jacoco")
@@ -17,16 +18,16 @@ plugins {
 group = "com.demo"
 version = "1.0-SNAPSHOT"
 
+val lombokVersion = "1.18.30"
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
-val lombokVersion = "1.18.30"
-val jacocoReportDir = "reports/jacoco/test/jacocoTestReport.xml"
-
 dependencies {
-
+    api(libs.commons.math3)
+    implementation(libs.guava)
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
@@ -55,7 +56,6 @@ tasks.jacocoTestReport {
     reports {
         xml.required.set(true)
         csv.required.set(false)
-        html.required.set(false)
     }
 }
 
@@ -73,9 +73,6 @@ sonar {
         property("sonar.core.codeCoveragePlugin", "jacoco")
         property("sonar.sources", "src/main")
         property("sonar.tests", "src/test")
-//        property("sonar.junit.reportPaths", "${layout.buildDirectory.dir("test-results/test")}")
-//        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.dir(jacocoReportDir)}")
-
         property("sonar.junit.reportPaths", "build/test-results/test")
         property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
     }

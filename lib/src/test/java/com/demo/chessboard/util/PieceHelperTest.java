@@ -6,6 +6,7 @@ import com.demo.chessboard.enums.File;
 import com.demo.chessboard.enums.PieceType;
 import com.demo.chessboard.enums.Rank;
 import com.demo.chessboard.enums.Side;
+import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
 import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.exceptions.InvalidInputFormatException;
@@ -64,8 +65,9 @@ class PieceHelperTest {
     void testCreatePieceFromEntry_InvalidPieceCode() {
         // Given: An invalid piece code
         String entry = "XE2";
+        AbstractPieceFactory factory = new PieceFactory(Side.WHITE);
 
         // Then: Creating the piece should throw an InvalidPieceCodeException
-        assertThrows(InvalidPieceCodeException.class, () -> PieceHelper.createPieceFromEntry(entry, new PieceFactory(Side.WHITE)));
+        assertThrows(InvalidPieceCodeException.class, () -> PieceHelper.createPieceFromEntry(entry, factory));
     }
 }
