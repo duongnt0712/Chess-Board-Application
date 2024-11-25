@@ -15,9 +15,12 @@ public class Library {
         PieceMovementService service = PieceMovementService.createPieceMovementService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the pieces (e.g., 'W: KE2, QD1, RA1, ...'): ");
-        String input = scanner.nextLine();
+        String firstSideInput = scanner.nextLine();
+        String secondSideInput = scanner.nextLine();
 
-        Map<Piece, Set<Position>> resultSet = service.initializeAndCalculateMoves(input);
+        String[] lines = new String[] {firstSideInput, secondSideInput};
+
+        Map<Piece, Set<Position>> resultSet = service.initializeAndCalculateMoves(lines);
 
         System.out.println("\n==========RESULT==========");
         resultSet.forEach((piece, moves) -> System.out.printf("%s %s at %s can move: %s%n", piece.getSide(), piece.getType(), piece.getPosition(), moves));

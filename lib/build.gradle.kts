@@ -7,8 +7,6 @@
  */
 
 plugins {
-    // Apply the java-library plugin for API and implementation separation.
-    `java-library`
     id("java")
     id("maven-publish")
     id("jacoco")
@@ -25,19 +23,62 @@ repositories {
 }
 
 val lombokVersion = "1.18.30"
+val jacocoReportDir = "reports/jacoco/test/jacocoTestReport.xml"
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api(libs.commons.math3)
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation(libs.guava)
 
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+}
+
+testing {
+    suites {
+        // Configure the built-in test suite
+        val test by getting(JvmTestSuite::class) {
+            // Use JUnit Jupiter test framework
+            useJUnitJupiter("5.10.3")
+        }
+    }
+}
+
+tasks.test {
+    reports {
+        junitXml.required.set(true) // Enable XML reports
+    }
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
+        property("sonar.organization", "duongnt0712")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.core.codeCoveragePlugin", "jacoco")
+        property("sonar.sources", "src/main")
+        property("sonar.tests", "src/test")
+//        property("sonar.junit.reportPaths", "${layout.buildDirectory.dir("test-results/test")}")
+//        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.dir(jacocoReportDir)}")
+
+        property("sonar.junit.reportPaths", "build/test-results/test")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
+    }
 }
 
 publishing {
@@ -55,50 +96,5 @@ publishing {
                 password = project.findProperty("gpr.token") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
-    }
-}
-
-testing {
-    suites {
-        // Configure the built-in test suite
-        val test by getting(JvmTestSuite::class) {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter("5.10.3")
-        }
-    }
-}
-
-tasks.test {
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-}
-
-tasks.jacocoTestReport {
-    dependsOn(tasks.test) // tests are required to run before generating the report
-    reports {
-        xml.required = true
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
-    }
-}
-
-jacoco {
-    toolVersion = "0.8.12"
-}
-
-// Apply a specific Java toolchain to ease working on different environments.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "duongnt0712_Chess-Board-Application")
-        property("sonar.organization", "duongnt0712")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.core.codeCoveragePlugin", "jacoco")
-        property("sonar.junit.reportPaths", "build/test-results/test")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
     }
 }

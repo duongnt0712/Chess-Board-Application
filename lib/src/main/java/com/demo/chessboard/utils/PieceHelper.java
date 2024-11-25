@@ -8,7 +8,7 @@ import com.demo.chessboard.exceptions.InvalidInputFormatException;
 import com.demo.chessboard.exceptions.InvalidPieceCodeException;
 import com.demo.chessboard.factory.AbstractPieceFactory;
 import com.demo.chessboard.factory.PieceFactory;
-import com.demo.chessboard.service.ChessBoard;
+import com.demo.chessboard.entity.ChessBoard;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,17 +19,17 @@ public class PieceHelper {
         throw new IllegalStateException("Utility class");
     }
 
-    public static ChessBoard parseInput(String input) {
+    // TODO: Fix this logic to be multiple color
+    public static ChessBoard parseInput(String[] input) {
         ChessBoard board = new ChessBoard();
-        String[] lines = input.split("B:");
+//        String[] lines = input.split("B:");
 
-        for (String line : lines) {
-            if (line.trim().isEmpty()) continue;
-
+        for (String line : input) {
+//            if (line.trim().isEmpty()) continue;
             Side side = line.toUpperCase().startsWith("W") ? Side.WHITE : Side.BLACK;
             AbstractPieceFactory factory = new PieceFactory(side);
 
-            String[] pieceEntries = line.replace("W: ", "").split(",");
+            String[] pieceEntries = line.replace("W: ", "").replace("B: ", "").split(",");
 
             createPieceFromEntries(pieceEntries, factory, board);
         }

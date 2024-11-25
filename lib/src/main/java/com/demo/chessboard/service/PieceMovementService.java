@@ -1,17 +1,15 @@
 package com.demo.chessboard.service;
+import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.service.impl.*;
+import com.demo.chessboard.move.*;
 import com.demo.chessboard.utils.PieceHelper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Convert the input data to the right piece format
- */
 public class PieceMovementService {
 
     private PieceMovementService() {
@@ -21,7 +19,7 @@ public class PieceMovementService {
         return new PieceMovementService();
     }
 
-    public Map<Piece, Set<Position>> initializeAndCalculateMoves (String input) {
+    public Map<Piece, Set<Position>> initializeAndCalculateMoves (String[] input) {
         Map<Piece, Set<Position>> resultSet = new HashMap<>();
 
         ChessBoard board = PieceHelper.parseInput(input);

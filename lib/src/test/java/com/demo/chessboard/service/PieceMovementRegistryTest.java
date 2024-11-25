@@ -1,8 +1,10 @@
 package com.demo.chessboard.service;
 
+import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.enums.PieceType;
+import com.demo.chessboard.move.MovementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

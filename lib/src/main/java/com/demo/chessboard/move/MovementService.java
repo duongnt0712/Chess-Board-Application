@@ -1,5 +1,6 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.move;
 
+import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 

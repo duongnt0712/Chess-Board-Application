@@ -1,4 +1,4 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.entity;
 
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;

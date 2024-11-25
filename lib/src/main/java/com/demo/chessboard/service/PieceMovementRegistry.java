@@ -1,6 +1,7 @@
 package com.demo.chessboard.service;
 
 import com.demo.chessboard.enums.PieceType;
+import com.demo.chessboard.move.MovementService;
 
 import java.util.EnumMap;
 import java.util.Map;

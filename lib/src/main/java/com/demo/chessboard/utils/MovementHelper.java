@@ -2,7 +2,7 @@ package com.demo.chessboard.utils;
 
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
-import com.demo.chessboard.service.ChessBoard;
+import com.demo.chessboard.entity.ChessBoard;
 
 import java.util.Set;
 
