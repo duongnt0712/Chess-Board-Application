@@ -17,22 +17,20 @@ public class MovementHelper {
             int fileDirection = 0;
             int rankDirection = 0;
 
-            while (true) {
+            while( PositionHelper.isValidPosition(currentPosition, fileDirection + direction[0], rankDirection + direction[1])) {
                 fileDirection += direction[0];
                 rankDirection += direction[1];
-                if (!PositionHelper.isValidPosition(currentPosition, fileDirection, rankDirection)) break;
 
                 Position newPosition = PositionHelper.move(currentPosition, fileDirection, rankDirection);
 
-                if (board.isEmpty(newPosition)) {
-                    moves.add(newPosition);
-                    continue;
-                }
-
                 if (board.isOccupiedByOpponent(newPosition, piece.getSide())) {
                     moves.add(newPosition);
+                    break;
                 }
-                break;
+
+                if (board.isEmpty(newPosition)) {
+                    moves.add(newPosition);
+                }
             }
         }
     }
