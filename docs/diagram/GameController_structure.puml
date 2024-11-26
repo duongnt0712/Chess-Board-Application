@@ -1,0 +1,412 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": false,
+    "showMethodParameterTypes": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.demo.chessboard.game.GameController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3079651 { 
+   	label=demo
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_409734353 { 
+   	label=chessboard
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Bishop277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Bishop</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BishopMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BishopMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ChessBoard277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ChessBoard</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   board: Map&lt;Position, Piece&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addPiece()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPiece()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isEmpty()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isOccupiedByOpponent()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameController1461786940[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createGameController()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initializeAndCalculateMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+King277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)King</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KingMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KingMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Knight277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Knight</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+KnightMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)KnightMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MovementHelper1915753305[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MovementHelper</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addValidMoveOrCapture()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveCrossShape()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Pawn277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Pawn</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PawnMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PawnMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleCaptureMoves()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleForwardMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Piece1665147534[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Piece</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   position: Position [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   side: Side [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   type: PieceType [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># canEqual()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PieceFactory525133696[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PieceFactory</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   side: Side [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createPiece()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PieceHelper1915753305[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PieceHelper</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createPieceFromEntries()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createPieceFromEntry()</TD></TR>
+<TR><TD ALIGN="LEFT" >- getPieceType()</TD></TR>
+<TR><TD ALIGN="LEFT" >- getSide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ parseInput()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PieceMovementRegistry1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PieceMovementRegistry</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   movementMap: Map&lt;PieceType, Movement&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ get()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ register()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Position1665147534[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Position</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   file: File [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rank: Rank [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ file()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ rank()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toBuilder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PositionHelper1915753305[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PositionHelper</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- getRankValue()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isInitialPosition()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isValidPosition()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ parsePosition()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Queen277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Queen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+QueenMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)QueenMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Rook277907117[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Rook</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RookMovement1461979419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RookMovement</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateAvailableMoves()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+BishopMovement1461979419 -> MovementHelper1915753305[label=""];
+ChessBoard277907117 -> Piece1665147534[label=""];
+ChessBoard277907117 -> Position1665147534[label=""];
+GameController1461786940 -> PieceHelper1915753305[label=""];
+GameController1461786940 -> PieceMovementRegistry1461979419[label=""];
+KingMovement1461979419 -> MovementHelper1915753305[label=""];
+KnightMovement1461979419 -> MovementHelper1915753305[label=""];
+PieceFactory525133696 -> Bishop277907117[label=""];
+PieceFactory525133696 -> King277907117[label=""];
+PieceFactory525133696 -> Knight277907117[label=""];
+PieceFactory525133696 -> Pawn277907117[label=""];
+PieceFactory525133696 -> Queen277907117[label=""];
+PieceFactory525133696 -> Rook277907117[label=""];
+PieceHelper1915753305 -> ChessBoard277907117[label=""];
+PieceHelper1915753305 -> PieceFactory525133696[arrowhead=none];
+PieceHelper1915753305 -> PositionHelper1915753305[label=""];
+PieceMovementRegistry1461979419 -> BishopMovement1461979419[arrowhead=none];
+PieceMovementRegistry1461979419 -> KingMovement1461979419[arrowhead=none];
+PieceMovementRegistry1461979419 -> KnightMovement1461979419[arrowhead=none];
+PieceMovementRegistry1461979419 -> PawnMovement1461979419[arrowhead=none];
+PieceMovementRegistry1461979419 -> QueenMovement1461979419[arrowhead=none];
+PieceMovementRegistry1461979419 -> RookMovement1461979419[arrowhead=none];
+QueenMovement1461979419 -> BishopMovement1461979419[label=""];
+QueenMovement1461979419 -> RookMovement1461979419[label=""];
+RookMovement1461979419 -> MovementHelper1915753305[label=""];
+    
+}
+@enduml
