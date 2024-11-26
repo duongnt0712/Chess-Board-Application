@@ -38,13 +38,13 @@ class PieceMovementRegistryTest {
         Movement movement = new TestMovement();
         registry.register(PieceType.PAWN, movement);
 
-        Movement retrievedService = registry.get(PieceType.PAWN);
-        assertNotNull(retrievedService, "Expected non-null MovementService for PAWN");
-        assertEquals(movement, retrievedService, "Expected registered MovementService to match retrieved service");
+        Movement retrievedMovement = registry.get(PieceType.PAWN);
+        assertNotNull(retrievedMovement, "Expected non-null MovementService for PAWN");
+        assertEquals(movement, retrievedMovement, "Expected registered MovementService to match retrieved service");
     }
 
     @Test
     void testRetrieveUnregisteredMovementReturnsNull() {
-        assertNull(registry.get(PieceType.BISHOP), "Expected null for unregistered PieceType BISHOP");
+        assertNull(registry.get(PieceType.QUEEN), "Expected null for unregistered PieceType BISHOP");
     }
 }
