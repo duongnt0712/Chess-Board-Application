@@ -38,6 +38,5 @@ Generate the Result Set of movenent to the output, may be Console, Text, Json, X
 
 - Unit Test Coverage: Line Coverage >= 80%, Branch Coverage >= 70%
 - SonarQube Static Analysis: No Critical and Major issues
-
-## Diagram
-<img src="docs/images/Diagram.PNG" alt="Diagram" width="700"/>
+  
+[SonarCloud ](https://sonarcloud.io/summary/overall?id=duongnt0712_Chess-Board-Application)
