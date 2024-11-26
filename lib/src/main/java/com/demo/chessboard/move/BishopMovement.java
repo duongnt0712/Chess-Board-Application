@@ -8,7 +8,7 @@ import com.demo.chessboard.utils.MovementHelper;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BishopMovement implements MovementService {
+public class BishopMovement implements Movement {
 
     @Override
     public Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece) {

@@ -6,6 +6,6 @@ import com.demo.chessboard.entity.base.Position;
 
 import java.util.Set;
 
-public interface MovementService {
+public interface Movement {
     Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece);
 }

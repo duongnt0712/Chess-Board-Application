@@ -1,4 +1,4 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.game;
 import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.entity.base.Piece;
@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class PieceMovementService {
+public class GameController {
 
-    private PieceMovementService() {
+    private GameController() {
     }
 
-    public static PieceMovementService createPieceMovementService() {
-        return new PieceMovementService();
+    public static GameController createGameController() {
+        return new GameController();
     }
 
     public Map<Piece, Set<Position>> initializeAndCalculateMoves (String[] input) {
@@ -27,8 +27,8 @@ public class PieceMovementService {
         PieceMovementRegistry registry = getPieceMovementRegistry();
 
         for (Piece piece : board.getAllPieces()) {
-            MovementService calculator = registry.get(piece.getType());
-            Set<Position> moves = calculator.calculateAvailableMoves(board, piece);
+            Movement movement = registry.get(piece.getType());
+            Set<Position> moves = movement.calculateAvailableMoves(board, piece);
             resultSet.put(piece, moves);
         }
         return resultSet;

@@ -7,7 +7,7 @@ import com.demo.chessboard.entity.ChessBoard;
 import java.util.HashSet;
 import java.util.Set;
 
-public class QueenMovement implements MovementService {
+public class QueenMovement implements Movement {
     @Override
     public Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece) {
         Set<Position> moves = new HashSet<>();

@@ -1,4 +1,4 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.game;
 
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PieceMovementServiceTest {
+class GameControllerTest {
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -23,8 +23,8 @@ class PieceMovementServiceTest {
         String[] input = {"W: BD4"};
 
         // When: Create the service and run the method under test
-        PieceMovementService service = PieceMovementService.createPieceMovementService();
-        Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
+        GameController controller = GameController.createGameController();
+        Map<Piece, Set<Position>> result = controller.initializeAndCalculateMoves(input);
 
         // Then: Validate the size
         assertEquals(1, result.size(), "There should be one piece in the result");
@@ -55,8 +55,8 @@ class PieceMovementServiceTest {
         String[] input = {"W: KE2, QD1, RA1, NB1, NF7, BC1, BC4, PA2, PB2, PC2, PD2, PG3", "B: KE8, QH1, RA8, RH8, ND1, BC8, PA7, PB7, PC7, PD7, PE5, PG7, PH7"};
 
         // When: Create the service and run the method under test
-        PieceMovementService service = PieceMovementService.createPieceMovementService();
-        Map<Piece, Set<Position>> result = service.initializeAndCalculateMoves(input);
+        GameController controller = GameController.createGameController();
+        Map<Piece, Set<Position>> result = controller.initializeAndCalculateMoves(input);
 
         // Then: Assertions
         logger.info("\n==========RESULT==========");

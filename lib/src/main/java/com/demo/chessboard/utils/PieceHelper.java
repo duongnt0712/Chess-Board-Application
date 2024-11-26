@@ -22,7 +22,6 @@ public class PieceHelper {
 
     public static ChessBoard parseInput(String[] lines) {
         ChessBoard board = new ChessBoard();
-
         for (String line : lines) {
             String[] input = line.split(":");
             Side side = getSide(input[0].trim());

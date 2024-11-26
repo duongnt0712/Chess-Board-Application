@@ -1,14 +1,13 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.move;
 
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.move.MovementService;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 public class PieceMovementRegistry {
 
-    private final Map<PieceType, MovementService> movementMap;
+    private final Map<PieceType, Movement> movementMap;
 
     private PieceMovementRegistry() {
         movementMap = new EnumMap<>(PieceType.class);
@@ -22,11 +21,11 @@ public class PieceMovementRegistry {
         return SingletonHelper.INSTANCE;
     }
 
-    public synchronized void register(PieceType type, MovementService service) {
+    public synchronized void register(PieceType type, Movement service) {
         movementMap.put(type, service);
     }
 
-    public MovementService get(PieceType type) {
+    public Movement get(PieceType type) {
         return movementMap.get(type);
     }
 }

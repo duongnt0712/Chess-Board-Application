@@ -9,7 +9,7 @@ import com.demo.chessboard.utils.PositionHelper;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PawnMovement implements MovementService {
+public class PawnMovement implements Movement {
 
     @Override
     public Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece) {

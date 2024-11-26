@@ -1,10 +1,9 @@
-package com.demo.chessboard.service;
+package com.demo.chessboard.move;
 
 import com.demo.chessboard.entity.ChessBoard;
 import com.demo.chessboard.entity.base.Piece;
 import com.demo.chessboard.entity.base.Position;
 import com.demo.chessboard.enums.PieceType;
-import com.demo.chessboard.move.MovementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PieceMovementRegistryTest {
     private PieceMovementRegistry registry;
 
-    static class TestMovementService implements MovementService {
+    static class TestMovementService implements Movement {
         @Override
         public Set<Position> calculateAvailableMoves(ChessBoard board, Piece piece) {
             return Set.of();
@@ -36,10 +35,10 @@ class PieceMovementRegistryTest {
 
     @Test
     void testRegisterAndRetrieveMovementService() {
-        MovementService movementService = new TestMovementService();
+        Movement movementService = new TestMovementService();
         registry.register(PieceType.PAWN, movementService);
 
-        MovementService retrievedService = registry.get(PieceType.PAWN);
+        Movement retrievedService = registry.get(PieceType.PAWN);
         assertNotNull(retrievedService, "Expected non-null MovementService for PAWN");
         assertEquals(movementService, retrievedService, "Expected registered MovementService to match retrieved service");
     }
